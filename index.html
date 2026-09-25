@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iFocus — Guía definitiva del iPhone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080c;
+  --bg2:#0c0e14;
+  --card:#11131b;
+  --card2:#161925;
+  --line:rgba(255,255,255,.08);
+  --txt:#f2f4f8;
+  --sub:#8b93a7;
+  --accent:#3d7bff;          /* azul eléctrico frío */
+  --accent-soft:rgba(61,123,255,.14);
+  --gen:#3d7bff;             /* color temático de generación activa */
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  transition:background .8s ease;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.sf{font-family:-apple-system,'SF Pro Display','Inter',system-ui,sans-serif;letter-spacing:-.02em}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:236px;
+  background:rgba(7,8,12,.92);backdrop-filter:blur(20px);
+  border-right:1px solid var(--line);
+  padding:28px 20px;display:flex;flex-direction:column;z-index:100;
+}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;padding:4px 8px}
+.logo svg{flex:none}
+.logo-name{font-size:21px;font-weight:800;letter-spacing:-.03em}
+.logo-name b{color:var(--accent)}
+.logo-sub{font-size:10.5px;color:var(--sub);letter-spacing:.14em;text-transform:uppercase;margin-top:-3px}
+.nav{margin-top:44px;display:flex;flex-direction:column;gap:6px}
+.nav a{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;
+  color:var(--sub);text-decoration:none;font-weight:500;font-size:14px;
+  transition:.25s;cursor:pointer;
+}
+.nav a svg{opacity:.8}
+.nav a:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.nav a.active{color:var(--txt);background:var(--accent-soft)}
+.nav a.active svg{opacity:1;filter:drop-shadow(0 0 6px var(--accent))}
+.sidebar-foot{margin-top:auto;font-size:11px;color:var(--sub);padding:0 8px}
+.sidebar-foot b{color:var(--accent)}
+
+/* ---------- MAIN ---------- */
+.main{margin-left:236px;min-height:100vh}
+.page{display:none;animation:fadeIn .45s ease}
+.page.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap{max-width:1060px;margin:0 auto;padding:56px 40px 120px}
+
+/* ---------- HERO ---------- */
+.hero{padding:70px 40px 30px;max-width:1060px;margin:0 auto;text-align:center;position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;
+  color:var(--accent);background:var(--accent-soft);border:1px solid rgba(61,123,255,.25);
+  padding:6px 14px;border-radius:100px;letter-spacing:.12em;text-transform:uppercase;
+}
+.hero h1{font-size:clamp(40px,6vw,72px);font-weight:800;line-height:1.02;margin:22px 0 18px}
+.hero h1 span{background:linear-gradient(100deg,#fff 20%,var(--accent) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{max-width:620px;margin:0 auto;color:var(--sub);font-size:17px}
+.phones{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin:56px 0 10px;flex-wrap:wrap}
+.phone{
+  width:118px;height:238px;border-radius:30px;position:relative;
+  background:linear-gradient(160deg,var(--pc1),var(--pc2));
+  border:3px solid rgba(255,255,255,.16);
+  box-shadow:0 24px 60px -12px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.25);
+  transition:.4s;cursor:pointer;
+}
+.phone:hover{transform:translateY(-12px) scale(1.04)}
+.phone .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:44px;height:12px;border-radius:8px;background:#000;opacity:.85}
+.phone .island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:34px;height:11px;border-radius:8px;background:#000;opacity:.85}
+.cam{position:absolute;top:12px;left:12px;display:flex;flex-wrap:wrap;gap:6px;width:44px}
+.cam i{width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a4a66,#05070d 70%);border:2px solid rgba(255,255,255,.28);display:block}
+.phone small{position:absolute;bottom:-30px;left:0;right:0;text-align:center;font-size:11.5px;color:var(--sub);font-weight:600}
+.hero-cta{margin-top:56px;display:flex;gap:14px;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;
+  font-weight:600;font-size:14.5px;cursor:pointer;border:none;transition:.25s;text-decoration:none;
+}
+.btn-p{background:var(--accent);color:#fff;box-shadow:0 8px 28px -6px rgba(61,123,255,.55)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 14px 36px -6px rgba(61,123,255,.7)}
+.btn-g{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line)}
+.btn-g:hover{background:rgba(255,255,255,.12)}
+
+/* ---------- CARDS / SECTIONS ---------- */
+.sec-head{margin:70px 0 30px}
+.sec-head h2{font-size:32px;font-weight:800}
+.sec-head p{color:var(--sub);margin-top:6px;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;transition:.3s;position:relative;overflow:hidden;
+}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,transparent,var(--gc,var(--accent)),transparent);opacity:.7}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.16);background:var(--card2)}
+.card h3{font-size:19px;font-weight:700}
+.card .yr{font-size:12px;color:var(--sub);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.card p{color:var(--sub);font-size:13.5px;margin-top:8px}
+.badge-new{
+  display:inline-block;background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;
+  padding:3px 10px;border-radius:100px;letter-spacing:.1em;margin-left:8px;vertical-align:2px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chip{
+  font-size:12px;font-weight:600;color:var(--sub);border:1px solid var(--line);
+  padding:5px 12px;border-radius:100px;background:rgba(255,255,255,.03);
+}
+.card .go{margin-top:16px;font-size:13.5px;font-weight:600;color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+
+/* ---------- MODEL DETAIL ---------- */
+.detail{
+  margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:24px;
+  padding:40px;display:none;animation:fadeIn .4s ease;
+}
+.detail.on{display:block}
+.detail-top{display:grid;grid-template-columns:230px 1fr;gap:44px;align-items:center}
+@media(max-width:760px){.detail-top{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.bigphone{
+  width:190px;height:380px;border-radius:44px;position:relative;
+  background:linear-gradient(165deg,var(--pc1),var(--pc2));
+  border:4px solid rgba(255,255,255,.18);
+  box-shadow:0 34px 80px -14px rgba(0,0,0,.75), inset 0 2px 0 rgba(255,255,255,.28);
+  animation:phoneIn .5s ease;
+}
+@keyframes phoneIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:none}}
+.bigphone .cam{top:16px;left:16px;width:66px;gap:9px}
+.bigphone .cam i{width:26px;height:26px;border-width:2.5px}
+.bigphone .island{top:14px;width:52px;height:15px}
+.bigphone .notch{top:14px;width:66px;height:16px}
+.detail h3{font-size:30px;font-weight:800}
+.detail .tagline{color:var(--sub);margin:6px 0 20px;font-size:15.5px}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.specs{grid-template-columns:1fr}}
+.spec{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+.spec .k{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase}
+.spec .v{font-size:14.5px;font-weight:600;margin-top:3px}
+.spec .d{font-size:12.5px;color:var(--sub);margin-top:2px}
+.vsbox{
+  margin-top:22px;border-left:3px solid var(--gen);background:rgba(255,255,255,.03);
+  border-radius:0 14px 14px 0;padding:16px 20px;font-size:14px;
+}
+.vsbox b{color:var(--gen)}
+.buyrow{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.price{font-size:26px;font-weight:800}
+.price small{font-size:13px;color:var(--sub);font-weight:500}
+
+/* ---------- RENTABLES ---------- */
+.year-card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;
+  padding:32px;margin-bottom:22px;display:grid;grid-template-columns:110px 1fr;gap:30px;
+  transition:.3s;
+}
+.year-card:hover{border-color:rgba(255,255,255,.18);background:var(--card2)}
+@media(max-width:640px){.year-card{grid-template-columns:1fr}}
+.year-num{
+  font-size:38px;font-weight:800;background:linear-gradient(180deg,var(--accent),rgba(61,123,255,.25));
+  -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1;
+}
+.year-card h3{font-size:20px;font-weight:700}
+.year-card .why{color:var(--sub);font-size:14px;margin-top:8px}
+.win-list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.win{display:flex;gap:10px;font-size:13.5px;color:#c6cddb}
+.win::before{content:'✓';color:var(--accent);font-weight:800}
+
+/* ---------- NOVA ---------- */
+.nova-fab{
+  position:fixed;right:26px;bottom:26px;width:58px;height:58px;border-radius:50%;
+  background:var(--accent);border:none;cursor:pointer;z-index:200;
+  box-shadow:0 12px 34px -6px rgba(61,123,255,.6);display:flex;align-items:center;justify-content:center;
+  transition:.3s;
+}
+.nova-fab:hover{transform:scale(1.08)}
+.nova-panel{
+  position:fixed;right:26px;bottom:98px;width:370px;max-width:calc(100vw - 40px);height:520px;max-height:70vh;
+  background:var(--bg2);border:1px solid var(--line);border-radius:22px;z-index:200;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 80px -10px rgba(0,0,0,.8);
+  opacity:0;pointer-events:none;transform:translateY(16px) scale(.97);transition:.3s;
+}
+.nova-panel.open{opacity:1;pointer-events:auto;transform:none}
+.nova-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.02)}
+.nova-av{
+  width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7aa5ff);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:#fff;
+}
+.nova-head b{font-size:15px}
+.nova-head span{display:block;font-size:11px;color:#3fce7a}
+.nova-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:82%;padding:11px 15px;border-radius:16px;font-size:13.5px;animation:fadeIn .3s ease}
+.msg.bot{background:var(--card2);border:1px solid var(--line);border-bottom-left-radius:5px;align-self:flex-start}
+.msg.user{background:var(--accent);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.sugg{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 10px}
+.sugg button{
+  font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);
+  border:1px solid rgba(61,123,255,.3);border-radius:100px;padding:6px 12px;cursor:pointer;transition:.2s;
+  font-family:'Inter',sans-serif;
+}
+.sugg button:hover{background:rgba(61,123,255,.25)}
+.nova-input{display:flex;gap:9px;padding:13px 14px;border-top:1px solid var(--line)}
+.nova-input input{
+  flex:1;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:100px;
+  padding:11px 17px;color:var(--txt);font-size:13.5px;outline:none;font-family:'Inter',sans-serif;
+}
+.nova-input input:focus{border-color:var(--accent)}
+.nova-input button{
+  width:42px;height:42px;border-radius:50%;background:var(--accent);border:none;color:#fff;
+  cursor:pointer;font-size:16px;flex:none;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  .sidebar{width:74px;padding:22px 12px}
+  .logo-name,.logo-sub,.nav a span,.sidebar-foot{display:none}
+  .nav a{justify-content:center;padding:12px}
+  .main{margin-left:74px}
+  .wrap{padding:40px 22px 100px}
+  .hero{padding:46px 20px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar">
+  <div class="logo" onclick="go('home')">
+    <svg width="34" height="34" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="20" stroke="#3d7bff" stroke-width="3"/>
+      <circle cx="24" cy="24" r="12" stroke="#3d7bff" stroke-width="2" opacity=".55"/>
+      <circle cx="24" cy="24" r="4.5" fill="#3d7bff"/>
+      <text x="24" y="29" text-anchor="middle" font-family="-apple-system,Inter,sans-serif" font-size="15" font-weight="800" fill="#fff">i</text>
+    </svg>
+    <div>
+      <div class="logo-name">i<b>Focus</b></div>
+      <div class="logo-sub">iPhone Guide</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <a id="nav-home" class="active" onclick="go('home')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      <span>Inicio</span>
+    </a>
+    <a id="nav-models" onclick="go('models')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
+      <span>Modelos</span>
+    </a>
+    <a id="nav-value" onclick="go('value')">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c0-2-2.2-3-5-3s-5 1-5 3 2 2.8 5 3.5 5 1.5 5 3.5-2.2 3-5 3-5-1-5-3"/></svg>
+      <span>Rentables</span>
+    </a>
+  </nav>
+  <div class="sidebar-foot">Hecho con enfoque.<br><b>iFocus</b> © 2026</div>
+</aside>
+
+<main class="main">
+
+<!-- ============ HOME ============ -->
+<section class="page on" id="page-home">
+  <div class="hero">
+    <div class="eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+      Guía del iPhone · 2019 — 2026
+    </div>
+    <h1>Todo el iPhone.<br><span>Un solo enfoque.</span></h1>
+    <p class="lead">iFocus reúne cada generación del iPhone 11 al 18: qué innovó, qué procesador estrenó, cuánta batería rinde, cuánto cuesta y dónde comprarlo. Sin ruido. Solo lo que importa.</p>
+
+    <div class="phones">
+      <div class="phone" style="--pc1:#3b5bdb;--pc2:#1e2a78" onclick="goModel(16)">
+        <div class="island"></div><div class="cam"><i></i><i></i></div><small>iPhone 16</small>
+      </div>
+      <div class="phone" style="--pc1:#7c4dff;--pc2:#3d1f8f" onclick="goModel(17)">
+        <div class="island"></div><div class="cam"><i></i><i></i><i></i></div><small>iPhone 17</small>
+      </div>
+      <div class="phone" style="--pc1:#3d8bff;--pc2:#123a8f;box-shadow:0 0 70px -8px rgba(61,139,255,.5),0 24px 60px -12px rgba(0,0,0,.7)" onclick="goModel(18)">
+        <div class="island"></div><div class="cam"><i></i><i></i><i></i></div><small>iPhone 18 · Nuevo</small>
+      </div>
+      <div class="phone" style="--pc1:#5c6bc0;--pc2:#232a56" onclick="goModel(15)">
+        <div class="island"></div><div class="cam"><i></i><i></i></div><small>iPhone 15</small>
+      </div>
+      <div class="phone" style="--pc1:#8e6bc0;--pc2:#402a63" onclick="goModel(14)">
+        <div class="notch"></div><div class="cam"><i></i><i></i><i></i></div><small>iPhone 14 Pro</small>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-p" onclick="go('models')">Explorar modelos
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-g" onclick="go('value')">¿Cuál conviene en 2026?</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Destacado</h2>
+      <p>El equilibrio perfecto entre precio y potencia este año.</p>
+    </div>
+    <div class="grid">
+      <div class="card" style="--gc:#3fce7a" onclick="goModel(15)">
+        <div class="yr">Recomendado · 2026</div>
+        <h3>iPhone 15 Pro Max <span class="badge-new" style="background:#3fce7a">Calidad-precio</span></h3>
+        <p>El flagship de 2023 sigue siendo una bestia: chip A17 Pro, Apple Intelligence, cámara de 48 MP y batería para todo el día — ahora a precio reducido.</p>
+        <div class="chips"><span class="chip">A17 Pro</span><span class="chip">Titanio</span><span class="chip">USB-C</span><span class="chip">Apple Intelligence</span></div>
+        <span class="go">Ver ficha →</span>
+      </div>
+      <div class="card" style="--gc:#3d7bff" onclick="goModel(18)">
+        <div class="yr">Lo más nuevo</div>
+        <h3>iPhone 18 <span class="badge-new">NUEVO</span></h3>
+        <p>La generación 2026 eleva el listón: nuevo chip A20, mejoras en cámara y la mayor eficiencia de batería vista en un iPhone estándar.</p>
+        <div class="chips"><span class="chip">A20</span><span class="chip">2026</span><span class="chip">Apple Intelligence</span></div>
+        <span class="go">Ver ficha →</span>
+      </div>
+      <div class="card" style="--gc:#3fce7a" onclick="go('value')">
+        <div class="yr">Análisis</div>
+        <h3>Rentables por año</h3>
+        <p>Qué iPhone comprar en 2026, 2027 y más allá según precio, longevidad de software y valor de reventa. Y por qué le gana a cualquier Android.</p>
+        <span class="go">Ver análisis →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODELOS ============ -->
+<section class="page" id="page-models">
+  <div class="wrap">
+    <div class="sec-head" style="margin-top:10px">
+      <h2>Modelos</h2>
+      <p>Ocho generaciones. Cada variante. Toca una tarjeta para ver la ficha completa: novedades, procesador, diferencias con el modelo anterior, batería, precio y dónde comprarlo.</p>
+    </div>
+    <div class="grid" id="model-grid"></div>
+    <div class="detail" id="detail"></div>
+  </div>
+</section>
+
+<!-- ============ RENTABLES ============ -->
+<section class="page" id="page-value">
+  <div class="wrap">
+    <div class="sec-head" style="margin-top:10px">
+      <h2>Más rentables por año</h2>
+      <p>Desde 2026 en adelante: qué iPhone da más valor por cada peso, por qué supera a las alternativas y cuándo conviene saltar de generación.</p>
+    </div>
+    <div id="value-list"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ NOVA ============ -->
+<button class="nova-fab" onclick="toggleNova()" title="Nova">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z"/><circle cx="9" cy="12" r="1" fill="#fff"/><circle cx="13" cy="12" r="1" fill="#fff"/><circle cx="17" cy="12" r="1" fill="#fff"/></svg>
+</button>
+<div class="nova-panel" id="novaPanel">
+  <div class="nova-head">
+    <div class="nova-av">N</div>
+    <div><b>Nova</b><span>● En línea — Asistente iFocus</span></div>
+  </div>
+  <div class="nova-body" id="novaBody"></div>
+  <div class="sugg">
+    <button onclick="askNova('¿Cuál iPhone me recomiendas en 2026?')">¿Cuál me recomiendas?</button>
+    <button onclick="askNova('¿Mejor batería?')">¿Mejor batería?</button>
+    <button onclick="askNova('¿Mejor cámara?')">¿Mejor cámara?</button>
+    <button onclick="askNova('¿Qué cambió en el iPhone 18?')">¿Qué cambió en el 18?</button>
+  </div>
+  <div class="nova-input">
+    <input id="novaInput" placeholder="Pregunta sobre cualquier iPhone…" onkeydown="if(event.key==='Enter')sendNova()">
+    <button onclick="sendNova()">➤</button>
+  </div>
+</div>
+
+<script>
+/* ==================== DATA ==================== */
+const GEN = {
+  11:{year:2019,color:'#39c2d7',c1:'#2b8fa3',c2:'#123c46',tag:'El iPhone para todos.',
+    models:['Estándar','Pro','Pro Max'],cams:2,
+    novedades:'Tercera cámara (ultra gran angular) en los Pro, modo Noche y video 4K en todos los modelos. El estándar baja de precio convirtiéndose en el más vendido.',
+    chip:'A13 Bionic · 7nm',chipNote:'El chip más rápido en un smartphone en 2019.',
+    vs:'Salto desde iPhone XR/XS: doble cámara, A13 y una hora más de batería.',
+    battery:'Hasta 17 h video (estándar) · 20 h (Pro Max)',
+    price:'Desde US$699 · hoy ~US$250–350 reacondicionado',
+    camara:'Doble 12 MP (estándar) · Triple 12 MP + teleobjetivo (Pro)',
+    buy:'Reacondicionado en Apple Certified, Amazon Renewed y tiendas de retail.'},
+  12:{year:2020,color:'#34c759',c1:'#2e7d46',c2:'#10331d',tag:'El rediseño plano llega con 5G.',
+    models:['mini','Estándar','Pro','Pro Max'],cams:2,
+    novedades:'Diseño de bordes planos estilo iPhone 4, pantalla OLED en toda la línea, 5G, MagSafe y el debut del iPhone mini. Los Pro estrenan LiDAR.',
+    chip:'A14 Bionic · 5nm',chipNote:'Primera arquitectura de 5 nm de Apple.',
+    vs:'vs iPhone 11: OLED en vez de LCD, 5G, diseño plano y carga MagSafe.',
+    battery:'Hasta 17 h video · el mini rinde menos (15 h)',
+    price:'Desde US$699 lanzamiento · hoy ~US$220–330 usado',
+    camara:'Doble 12 MP · Pro con triple + LiDAR y Apple ProRAW',
+    buy:'Usado/reacondicionado: Swappa, Amazon Renewed, MercadoLibre.'},
+  13:{year:2021,color:'#7c6cf0',c1:'#5b4bd0',c2:'#231a5e',tag:'Batería histórica y notch más chico.',
+    models:['mini','Estándar','Pro','Pro Max'],cams:2,
+    novedades:'Notch 20% más pequeño, modo Cinematográfico, ProMotion 120 Hz en los Pro y el salto de batería más grande hasta entonces.',
+    chip:'A15 Bionic · 5nm',chipNote:'Hasta 6 núcleos GPU en los Pro.',
+    vs:'vs iPhone 12: +1,5 a 2,5 h de batería, cámara en modo diagonal y 120 Hz solo en Pro.',
+    battery:'Hasta 19 h video (estándar) · 28 h (Pro Max)',
+    price:'Desde US$699 lanzamiento · hoy ~US$300–400 usado',
+    camara:'Doble 12 MP con sensor shift · Pro triple 12 MP',
+    buy:'Usado certificado y retail con garantía.'},
+  14:{year:2022,color:'#a05ce0',c1:'#7d3fb8',c2:'#2e1245',tag:'Adiós mini, hola Plus.',
+    models:['Estándar','Plus','Pro','Pro Max'],cams:2,
+    novedades:'El Plus reemplaza al mini, detección de choques y SOS vía satélite. Los Pro saltan a 48 MP y Always-On Display con Dynamic Island.',
+    chip:'A15 (mejorado) / A16 Bionic',chipNote:'El estándar conserva el A15; los Pro estrenan el A16.',
+    vs:'vs iPhone 13: cámara principal 48 MP y Dynamic Island exclusivo de los Pro; el estándar cambia poco.',
+    battery:'Hasta 20 h video (estándar) · 29 h (Pro Max)',
+    price:'Desde US$799 lanzamiento · hoy ~US$350–480 usado',
+    camara:'12 MP estándar · Pro 48 MP + teleobjetivo 3x',
+    buy:'Usado certificado, operadores con plan y retail.'},
+  15:{year:2023,color:'#e8b04b',c1:'#c98f2e',c2:'#5e3f0e',tag:'USB-C por fin, y 48 MP para todos.',
+    models:['Estándar','Plus','Pro','Pro Max'],cams:2,
+    novedades:'USB-C reemplaza Lightning, Dynamic Island llega a toda la línea, cámara de 48 MP también en el estándar. Los Pro adoptan titanio, botón de acción y A17 Pro (juegos AAA).',
+    chip:'A16 / A17 Pro · 3nm',chipNote:'A17 Pro: primer chip de 3 nm en un iPhone.',
+    vs:'vs iPhone 14: USB-C, Dynamic Island en todos, 48 MP generalizado y titanio en Pro.',
+    battery:'Hasta 20 h video (estándar) · 29 h (Pro Max)',
+    price:'Desde US$799 lanzamiento · hoy ~US$450–650 nuevo remanente',
+    camara:'48 MP principal · Pro con teleobjetivo 3x/5x (Max)',
+    buy:'Apple Refurbished, operadores, Falabella y MercadoLibre (nuevo/remanente).'},
+  16:{year:2024,color:'#3d5afe',c1:'#2c3fb8',c2:'#101a4d',tag:'Apple Intelligence desembarca.',
+    models:['Estándar','Plus','Pro','Pro Max'],cams:2,
+    novedades:'Botón de Control de Cámara, Apple Intelligence en toda la línea, A18 de serie y los Pro con A18 Pro, cuerpo de titanio y cámara ultra gran angular mejorada.',
+    chip:'A18 / A18 Pro · 3nm N3E',chipNote:'Diseñado para Apple Intelligence.',
+    vs:'vs iPhone 15: chip A18 (el 15 quedó fuera de Apple Intelligence), botón de cámara y mejor térmica.',
+    battery:'Hasta 22 h video (estándar) · 33 h (Pro Max)',
+    price:'Desde US$799 lanzamiento · hoy ~US$550–700 nuevo',
+    camara:'48 MP Fusion · Pro con 48 MP ultra gran angular',
+    buy:'Apple Store, operadores, retail (Best Buy, Falabella, MercadoLibre).'},
+  17:{year:2025,color:'#8a4dff',c1:'#6a33d6',c2:'#2a1159',tag:'El año del iPhone Air.',
+    models:['Estándar','Air','Pro','Pro Max'],cams:2,
+    novedades:'Nace el iPhone Air: 5,6 mm de grosor, el iPhone más delgado de la historia. Los Pro estrenan ProMotion 240 Hz, cámara de 48 MP con zoom óptico mejorado, cámara frontal 18 MP y refrigeración por cámara de vapor.',
+    chip:'A19 / A19 Pro · 3nm N3P',chipNote:'Hasta 12 GB de RAM en los Pro.',
+    vs:'vs iPhone 16: diseño Air completamente nuevo, 240 Hz en Pro, cámaras frontales 18 MP y mejor disipación.',
+    battery:'Hasta 24 h video (estándar) · 37 h (Pro Max) · Air optimizado por eficiencia',
+    price:'Desde US$799 lanzamiento (Air US$999)',
+    camara:'48 MP con teleobjetivo 4x (Pro) · frontal 18 MP cuadrada en Pro',
+    buy:'Apple Store, operadores y retail autorizado.'},
+  18:{year:2026,color:'#3d8bff',c1:'#3d8bff',c2:'#0f2f7a',tag:'La generación 2026. El nuevo estándar.',
+    models:['Estándar','Plus','Pro','Pro Max'],cams:2,isNew:true,
+    novedades:'Nuevo chip A20 con mejoras de IA en el dispositivo, cámara principal renovada con mejor rendimiento en baja luz, eficiencia energética récord y Apple Intelligence más profundo en todo el sistema.',
+    chip:'A20 / A20 Pro',chipNote:'La mayor salto de eficiencia por generación.',
+    vs:'vs iPhone 17: A20 más eficiente, cámaras mejoradas en todos los modelos y mejoras térmicas heredadas de los Pro.',
+    battery:'Hasta 26 h video (estándar) · 39 h (Pro Max)',
+    price:'Desde US$829 (estimado lanzamiento)',
+    camara:'48 MP renovada · Pro con teleobjetivo periscópico mejorado',
+    buy:'Apple Store (preventa desde septiembre 2026), operadores y retail.'}
+};
+
+const VALUE = [
+  {year:2026,model:'iPhone 16',price:'~US$599 nuevo tras la bajada de precio',
+   why:'El punto dulce del catálogo: tiene A18 y Apple Intelligence (el 15 quedó fuera), batería de sobra y recibirá iOS hasta 2031. Por menos dinero que un flagship Android, rinde igual y conserva mejor su valor.',
+   wins:['A18 con Apple Intelligence — el iPhone 15 quedó sin esta característica','~30% más barato que el iPhone 18 con 85% del rendimiento','Valor de reventa superior a cualquier Android tras 2 años','Soporte de iOS garantizado hasta ~2031']},
+  {year:2027,model:'iPhone 17',
+   why:'Con el iPhone 19 ya en tiendas, el 17 bajará al rango de US$650–700 heredando 240 Hz en Pro, cámaras frontales 18 MP y el diseño Air. Será el flagship “viejo” que le gana a los gama media Android.',
+   wins:['Cámaras y pantalla de flagship a precio de gama media','5+ años de soporte de iOS restantes','Ecosistema y reventa: pierde menos valor que cualquier rival']},
+  {year:2028,model:'iPhone 18',
+   why:'El A20 seguirá sobrado para todo el software de 2028, y su precio caerá ~US$200 tras el lanzamiento del iPhone 19. La mejor cámara y batería por dólar en ese momento.',
+   wins:['Chip A20 con margen de sobra para 5 años más','Cámaras de última generación a precio reducido','La batería de 39 h del Pro Max sigue siendo referencia']},
+  {year:2029,model:'iPhone 17 Pro',
+   why:'El truco clásico de Apple: comprar el Pro de hace dos generaciones. Cámara periscópica, 240 Hz y titanio por menos que un Android actual de gama media-alta.',
+   wins:['Hardware de flagship (titanio, 240 Hz, teleobjetivo)','iOS soportado hasta ~2032','Reventa: sigue valiendo 2–3x más que un Android de su año']}
+];
+
+/* ==================== NAV ==================== */
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('page-'+id).classList.add('on');
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ==================== MODEL GRID ==================== */
+const grid = document.getElementById('model-grid');
+Object.entries(GEN).forEach(([n,g])=>{
+  const el = document.createElement('div');
+  el.className='card';
+  el.style.setProperty('--gc',g.color);
+  el.innerHTML = `
+    <div class="yr">${g.year}${g.isNew?' · <span style="color:var(--accent)">Lanzamiento</span>':''}</div>
+    <h3>iPhone ${n} ${g.isNew?'<span class="badge-new">NUEVO</span>':''}</h3>
+    <p>${g.tag}</p>
+    <div class="chips">${g.models.map(m=>`<span class="chip">${m}</span>`).join('')}</div>
+    <span class="go">Ver ficha completa →</span>`;
+  el.onclick=()=>showDetail(n);
+  grid.appendChild(el);
+});
+
+function showDetail(n){
+  const g = GEN[n];
+  document.documentElement.style.setProperty('--gen',g.color);
+  document.body.style.background = `radial-gradient(900px 500px at 80% -5%, ${g.color}18, transparent 70%), var(--bg)`;
+  const d = document.getElementById('detail');
+  const camModule = n>=14
+    ? `<div class="cam">${'<i></i>'.repeat(n>=14?3:g.cams)}</div>`
+    : `<div class="cam">${'<i></i>'.repeat(g.cams)}</div>`;
+  d.innerHTML = `
+    <div class="detail-top">
+      <div class="bigphone" style="--pc1:${g.c1};--pc2:${g.c2}">
+        ${n>=14?'<div class="island"></div>':'<div class="notch"></div>'}
+        ${n>=11 && n!==12? camModule : camModule}
+      </div>
+      <div>
+        <h3>iPhone ${n} ${g.isNew?'<span class="badge-new">NUEVO</span>':''}</h3>
+        <div class="tagline">${g.tag} · ${g.year}</div>
+        <div class="specs">
+          <div class="spec" style="grid-column:1/-1"><div class="k">Novedades</div><div class="d" style="font-size:13.5px">${g.novedades}</div></div>
+          <div class="spec"><div class="k">Procesador</div><div class="v">${g.chip}</div><div class="d">${g.chipNote}</div></div>
+          <div class="spec"><div class="k">Cámara</div><div class="v">${g.camara}</div></div>
+          <div class="spec"><div class="k">Batería</div><div class="v">${g.battery}</div></div>
+          <div class="spec"><div class="k">Variantes</div><div class="v">${g.models.join(' · ')}</div></div>
+        </div>
+        <div class="vsbox"><b>¿Qué cambió vs el iPhone ${n-1}?</b><br>${g.vs}</div>
+        <div class="buyrow">
+          <div class="price">${g.price.split('·')[0]}<small> ${g.price.includes('·')?'· '+g.price.split('·').slice(1).join('·'):''}</small></div>
+        </div>
+        <div style="margin-top:10px;font-size:13.5px;color:var(--sub)"><b style="color:var(--txt)">Dónde comprar:</b> ${g.buy}</div>
+      </div>
+    </div>`;
+  d.classList.add('on');
+  setTimeout(()=>d.scrollIntoView({behavior:'smooth',block:'start'}),60);
+}
+function goModel(n){ go('models'); setTimeout(()=>showDetail(n),150); }
+
+/* ==================== VALUE ==================== */
+const vl = document.getElementById('value-list');
+VALUE.forEach(v=>{
+  const el=document.createElement('div');
+  el.className='year-card';
+  el.innerHTML=`
+    <div class="year-num">${v.year}</div>
+    <div>
+      <h3>${v.model} <span style="color:var(--sub);font-size:13px;font-weight:500">· ${v.price}</span></h3>
+      <p class="why">${v.why}</p>
+      <div class="win-list">${v.wins.map(w=>`<div class="win">${w}</div>`).join('')}</div>
+    </div>`;
+  vl.appendChild(el);
+});
+
+/* ==================== NOVA ==================== */
+const novaBody=document.getElementById('novaBody');
+let novaOpen=false, greeted=false;
+function toggleNova(){
+  novaOpen=!novaOpen;
+  document.getElementById('novaPanel').classList.toggle('open',novaOpen);
+  if(novaOpen && !greeted){
+    greeted=true;
+    botSay('¡Hola! Soy Nova, la guía de iFocus. Pregúntame sobre cualquier iPhone del 11 al 18: precios, batería, cámaras o cuál te conviene más este año.');
+  }
+}
+function bubble(text,who){
+  const m=document.createElement('div');
+  m.className='msg '+who;
+  m.textContent=text;
+  novaBody.appendChild(m);
+  novaBody.scrollTop=novaBody.scrollHeight;
+}
+function botSay(t){bubble(t,'bot')}
+function askNova(q){ if(!novaOpen) toggleNova(); document.getElementById('novaInput').value=q; sendNova(); }
+function sendNova(){
+  const inp=document.getElementById('novaInput');
+  const q=inp.value.trim(); if(!q) return;
+  inp.value='';
+  bubble(q,'user');
+  setTimeout(()=>botSay(novaReply(q.toLowerCase())),450);
+}
+function novaReply(q){
+  if(/18/.test(q)) return 'El iPhone 18 (2026) trae el nuevo chip A20, cámaras renovadas con mejor baja luz y la mayor eficiencia de batería de la línea: hasta 26 h de video en el estándar y 39 h en el Pro Max. Desde ~US$829 en Apple Store, operadores y retail autorizado.';
+  if(/17/.test(q)) return 'El iPhone 17 destacó por el iPhone Air (5,6 mm, el más delgado jamás hecho), los Pro con ProMotion 240 Hz y cámaras frontales de 18 MP. Chip A19 y hasta 37 h de batería en el Pro Max.';
+  if(/bater/i.test(q)) return 'Los mejores en batería: iPhone 17 Pro Max (37 h de video) y iPhone 18 Pro Max (39 h). Si buscas algo más barato con gran autonomía, el iPhone 16 Plus rinde 27 h y ya bajó de precio.';
+  if(/c[aá]mara/.test(q)) return 'Para foto y video los reyes son los Pro Max: 48 MP con teleobjetivo periscópico (18 Pro Max) o 4x (17 Pro Max). El mejor equilibrio calidad-precio: iPhone 15 Pro Max, que comparte el 48 MP principal por mucho menos dinero.';
+  if(/recomiend|conviene|comprar|mejor/.test(q)) return 'En 2026 mi recomendación es el iPhone 16 (~US$599): es el más barato con A18 y Apple Intelligence, tendrá iOS hasta ~2031 y conserva mejor su valor que cualquier Android. Si quieres lo último, el iPhone 18 desde ~US$829.';
+  if(/precio|cu[aá]nto|cuesta/.test(q)) return 'Rangos actuales aproximados: iPhone 18 desde ~US$829 · iPhone 17 desde ~US$699 · iPhone 16 desde ~US$599 · iPhone 15 desde ~US$499. En Chile, revisa Apple Store, Falabella y MercadoLibre para precios en CLP con garantía local.';
+  if(/android/i.test(q)) return 'Un iPhone gana en valor a largo plazo: 5–7 años de actualizaciones de iOS, mejor reventa (vale 2–3x más que un Android de su año usado) y ecosistema integrado. Por eso en la sección Rentables cada ganador supera a sus rivales Android del mismo precio.';
+  if(/hola|buenas/.test(q)) return '¡Hola! Puedo ayudarte a comparar modelos, saber precios, batería, cámaras o decidir cuál iPhone comprar. ¿Qué te interesa?';
+  return 'Buena pregunta. Puedo contarte sobre cualquier generación del iPhone 11 al 18: procesador, novedades vs el modelo anterior, batería, precio y dónde comprarlo. Por ejemplo: "¿qué cambió en el iPhone 15?" o "¿cuál tiene mejor batería?"';
+}
+</script>
+</body>
+        </html>
